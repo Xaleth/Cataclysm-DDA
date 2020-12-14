@@ -92,6 +92,7 @@ class craft_command
         bool empty() const {
             return rec == nullptr;
         }
+
         skill_id get_skill_id();
 
     private:
@@ -102,6 +103,10 @@ class craft_command
         * long as possible.
         */
         bool longcraft = false;
+
+        // Indicates whether or not the player is at the recipe while it is active.
+        bool unattended = false;
+
         // This is mainly here for maintainability reasons.
         Character *crafter;
 

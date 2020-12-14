@@ -74,6 +74,7 @@ class recipe
         itype_id result_ = itype_id::NULL_ID();
 
         int time = 0; // in movement points (100 per turn)
+        int unattended_time = 0; // same points as time
 
         float exertion = 0.0f;
 

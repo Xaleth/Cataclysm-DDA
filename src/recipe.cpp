@@ -171,6 +171,14 @@ void recipe::load( const JsonObject &jo, const std::string &src )
     assign( jo, "difficulty", difficulty, strict, 0, MAX_SKILL );
     assign( jo, "flags", flags );
 
+    if( jo.has_int( "unattended_for" ) ) {
+      // same as "time"
+      unattended_time = jo.get_int( "unattended_for" );
+    } else if( jo.has_string( "unattended_for" ) ) {
+      unattended_time = to_moves<int>( read_from_json_string<time_duration>( *jo.get_raw( "unattended_for" ),
+                        time_duration::units ) );
+    assign( jo, "unattended_for", unattended_time );
+
     // automatically set contained if we specify as container
     assign( jo, "contained", contained, strict );
     contained |= assign( jo, "container", container, strict );
